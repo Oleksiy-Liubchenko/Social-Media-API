@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "post",
     "user",
+    "drf_spectacular",
 ]
 
 MIDDLEWARE = [
@@ -125,4 +126,16 @@ STATIC_URL = "static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 AUTH_USER_MODEL = "user.User"
-# AUTH_USER_MODEL = 'user.models.User'
+
+REST_FRAMEWORK = {
+    # YOUR SETTINGS
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+}
+
+SPECTACULAR_SETTINGS = {
+    "TITLE": "Social media API",
+    "DESCRIPTION": "API for simple Social Media with posts, hashtags and user preferences",
+    "VERSION": "1.0.0",
+    "SERVE_INCLUDE_SCHEMA": False,
+    # OTHER SETTINGS
+}
