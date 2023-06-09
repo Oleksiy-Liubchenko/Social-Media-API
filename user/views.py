@@ -30,8 +30,7 @@ class MyUserProfile(generics.RetrieveUpdateAPIView):
 
 class UserProfileViewSet(viewsets.ModelViewSet):
     queryset = UserProfile.objects.all()
-    permission_classes = [IsOwnerOrReadOnly]
-    # serializer_class = UserProfileListSerializer
+    permission_classes = [IsOwnerOrReadOnly, IsAuthenticated]
 
     def get_queryset(self):
         queryset = self.queryset
