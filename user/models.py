@@ -1,9 +1,15 @@
+import os
+import uuid
+
 from django.contrib.auth.models import (
     AbstractUser,
     BaseUserManager,
 )
 from django.db import models
+from django.utils.text import slugify
 from django.utils.translation import gettext as _
+
+from Social_Media_API import settings
 
 
 class UserManager(BaseUserManager):
@@ -48,3 +54,20 @@ class User(AbstractUser):
     REQUIRED_FIELDS = []
 
     objects = UserManager()
+
+
+def profile_picture_file_path(user, filename):
+    _, extension = os.path.splitext(filename)
+
+    filename = f"{slugify(user.id)}-{uuid.uuid4()}{extension}"
+
+    return os.path.join("uploads", "profile_pictures", filename)
+
+
+class UserProfile(models.Model):
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    username = models.CharField(max_length=70, unique=True)
+    bio = models.CharField(max_length=200)
+    profile_photo = models.ImageField(null=True, upload_to=profile_picture_file_path)
+    followings = models.ManyToManyField(to=User, related_name="followings")
+    followers = models.ManyToManyField(to=User, related_name="followers")
