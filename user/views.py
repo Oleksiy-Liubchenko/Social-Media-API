@@ -3,7 +3,7 @@ from rest_framework import generics, viewsets
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
-
+from rest_framework.decorators import action
 from user.models import UserProfile
 from user.permissions import IsOwnerOrReadOnly
 from user.serializers import (
@@ -72,3 +72,18 @@ class UserProfileViewSet(viewsets.ModelViewSet):
     )
     def list(self, request, *args, **kwargs):
         return super().list(request, *args, **kwargs)
+
+    @action(detail=True, methods=["get"])
+    def follow_toggle(self, request, pk=None):
+        profile = self.get_object()
+
+        user = request.user
+
+        if profile.followers.filter(pk=user.pk).exists():
+            profile.followers.remove(user)
+            user.userprofile.followings.remove(profile.user)
+            return Response({"status": "unfollow"})
+        profile.followers.add(user)
+        user.userprofile.followings.add(profile.user)
+
+        return Response({"status": "follow"})
