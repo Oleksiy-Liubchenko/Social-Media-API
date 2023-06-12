@@ -28,6 +28,7 @@ class UserSerializer(serializers.ModelSerializer):
 
 class UserProfileListSerializer(serializers.ModelSerializer):
     email = serializers.EmailField(source="user.email", read_only=True)
+    follow_status = serializers.SerializerMethodField()
 
     class Meta:
         model = UserProfile
@@ -38,8 +39,16 @@ class UserProfileListSerializer(serializers.ModelSerializer):
             "username",
             "bio",
             "profile_photo",
+            "follow_status",
         )
         read_only_fields = ("id", "user")
+
+    def get_follow_status(self, obj):
+        """show you is you following this user profile or not"""
+        user = self.context["request"].user
+        if obj.followers.filter(pk=user.pk).exists():
+            return "following"
+        return "not following"
 
 
 class UserProfileDetailSerializer(UserProfileListSerializer):
