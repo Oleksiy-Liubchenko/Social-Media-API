@@ -66,7 +66,7 @@ class UserProfileViewSet(viewsets.ModelViewSet):
                 "bio",
                 type=str,
                 description="Filtering by bio (write some symbol that "
-                "contains in username). ex. ?username=ale",
+                "contains in username). ex. ?bio=ale",
             ),
         ]
     )
