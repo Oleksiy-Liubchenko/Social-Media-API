@@ -8,6 +8,8 @@ from post.serializers import PostSerializer, HashtagSerializer, PostListSerializ
 
 
 class PostViewSet(viewsets.ModelViewSet):
+    """Your post list + your followings. Filters by user & hashtag"""
+
     queryset = Post.objects.all()
     permission_classes = [IsOwnerOrReadOnly, IsAuthenticated]
 

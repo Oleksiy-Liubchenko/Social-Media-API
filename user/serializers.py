@@ -27,6 +27,8 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class UserProfileListSerializer(serializers.ModelSerializer):
+    """Register profile & profiles info"""
+
     email = serializers.EmailField(source="user.email", read_only=True)
     follow_status = serializers.SerializerMethodField()
 
@@ -52,6 +54,8 @@ class UserProfileListSerializer(serializers.ModelSerializer):
 
 
 class UserProfileDetailSerializer(UserProfileListSerializer):
+    """Detail profile info with opportunity to follow/unfollow users"""
+
     class Meta:
         model = UserProfile
         fields = (

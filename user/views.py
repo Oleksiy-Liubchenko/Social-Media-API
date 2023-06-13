@@ -15,6 +15,8 @@ from user.serializers import (
 
 
 class RegisterView(APIView):
+    """Register new profile"""
+
     def post(self, request):
         serializer = UserSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
@@ -23,6 +25,8 @@ class RegisterView(APIView):
 
 
 class MyUserProfile(generics.RetrieveUpdateAPIView):
+    """User profile with managing info opportunity"""
+
     serializer_class = UserSerializer
     permission_classes = (IsAuthenticated,)
 
@@ -31,6 +35,8 @@ class MyUserProfile(generics.RetrieveUpdateAPIView):
 
 
 class UserProfileViewSet(viewsets.ModelViewSet):
+    """UserProfile view with filter by username / bio opportunity & follow/unfollow user toggle"""
+
     queryset = UserProfile.objects.all()
     permission_classes = [IsOwnerOrReadOnly, IsAuthenticated]
 
