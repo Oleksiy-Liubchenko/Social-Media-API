@@ -1,12 +1,10 @@
-from django.contrib.auth import get_user_model
-from django.db.models import Q
 from drf_spectacular.utils import extend_schema, OpenApiParameter
 from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated
 
 from post.models import Post, Hashtag
-from post.serializers import PostSerializer, HashtagSerializer, PostListSerializer
 from post.permissions import IsOwnerOrReadOnly
+from post.serializers import PostSerializer, HashtagSerializer, PostListSerializer
 
 
 class PostViewSet(viewsets.ModelViewSet):
