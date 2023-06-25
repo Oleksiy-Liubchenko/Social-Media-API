@@ -1,0 +1,97 @@
+[
+  {
+    "_comment": "pass is - 12345678 to all users",
+    "model": "user.user",
+    "pk": 1,
+    "fields": {
+      "email": "Admin@social.com",
+      "password": "pbkdf2_sha256$600000$0Nko6ExMX3daThFD7ic22S$dvCyOE4u++kL9S/Ih69N6gumyYUYl27e6i3wnnFBFIs=",
+      "first_name": "Admin",
+      "last_name": "Admin",
+      "is_superuser": true,
+      "is_staff": true
+    }
+  },
+  {
+    "model": "user.user",
+    "pk": 2,
+    "fields": {
+      "email": "Greta@user.com",
+      "password": "pbkdf2_sha256$600000$0Nko6ExMX3daThFD7ic22S$dvCyOE4u++kL9S/Ih69N6gumyYUYl27e6i3wnnFBFIs=",
+      "first_name": "Greta",
+      "last_name": "Thunberg",
+      "is_superuser": false,
+      "is_staff": false
+    }
+  },
+  {
+    "model": "user.userprofile",
+    "pk": 1,
+    "fields": {
+      "username": "mrAdmin",
+      "bio": "need some permission? tssshh... i have one",
+      "user_id": 1,
+      "followings": [2]
+    }
+  },
+  {
+    "model": "user.userprofile",
+    "pk": 2,
+    "fields": {
+      "username": "gretathunberg",
+      "bio": "Nature is calling",
+      "user_id": 2,
+      "followers": [1]
+    }
+  },
+  {
+    "model": "post.hashtag",
+    "pk": 1,
+    "fields": {
+      "name": "GenerateAction"
+    }
+  },
+  {
+    "model": "post.hashtag",
+    "pk": 2,
+    "fields": {
+      "name": "FridaysForFuture"
+    }
+  },
+  {
+    "model": "post.hashtag",
+    "pk": 3,
+    "fields": {
+      "name": "ClimateStrike"
+    }
+  },
+  {
+    "model": "post.post",
+    "pk": 1,
+    "fields": {
+      "content": "School strike week 237. Today, hundreds of thousands of people were once again climate striking all over the world, demanding an end to fossil finance! ✊✊",
+      "created_at": "2023-06-13 12:00:00.000000",
+      "user_id": 2,
+      "hashtag": [1]
+    }
+  },
+  {
+    "model": "post.post",
+    "pk": 2,
+    "fields": {
+      "content": "We need a loss and damage finance facility. We need climate justice. We need action.\n\nTime is running out, which is why decision makers need to step up at",
+      "created_at": "2023-06-13 12:00:00.000000",
+      "user_id": 2
+    }
+  },
+  {
+    "model": "post.post",
+    "pk": 3,
+    "fields": {
+      "content": "Whose human rights are you standing up for?",
+      "created_at": "2023-06-13 12:00:00.000000",
+      "user_id": 1,
+      "hashtag": [2, 3]
+    }
+  }
+]

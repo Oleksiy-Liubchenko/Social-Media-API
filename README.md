@@ -55,6 +55,10 @@ source venv/bin/activate (on macOS)
 pip install -r requirements.txt
 python manage.py migrate
 python manage.py runserver
+python manage.py loaddata fixtures.json
+
+user email - Admin@social.com
+user pass - 12345678
 ```
 
 Inside the main folder, there is a file called .env_sample which contains an example of the SECRET_KEY needed for the project. To proceed, you should create a new file called .env and enter your own secret key following the example provided. The time has come! Now use it :)
