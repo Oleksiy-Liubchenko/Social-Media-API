@@ -53,9 +53,10 @@ python -m venv venv
 venv\Scripts\activate (on Windows)
 source venv/bin/activate (on macOS)
 pip install -r requirements.txt
+python manage.py makemigrations
 python manage.py migrate
-python manage.py runserver
 python manage.py loaddata fixtures.json
+python manage.py runserver
 
 user email - Admin@social.com
 user pass - 12345678
